@@ -23,3 +23,8 @@ const UserSchema = new Schema(
         }
     }
 );
+
+module.exports = {
+    UserSchema, 
+    User: mongoose.model('User', UserSchema)
+};
