@@ -3,10 +3,24 @@ require('dotenv').config();
 const cors = require('cors');
 const express = require('express'); 
 const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
 
 const appStartTime = Date.now();
 
+const appCore = async () => {
+  console.log('Connecting to mongo instance...');
+  try {
+    await mongoose.connect(process.env.DB_URI);
+    console.log('Connected to mongo instance.');
+  }catch (error) {
+    console.log('Failed to connect to mongo instance.');
+    process.exit(1);
+  }
+};
+
 const startApp = async () => {
+  await appCore();
+
   const port = 3000;
   const app = express();
 
