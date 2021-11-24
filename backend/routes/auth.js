@@ -1,5 +1,6 @@
 const express = require('express');
 const joi = require('joi');
+const bcrypt = require('bcrypt');
 
 const { User } = require('../models/User.js');
 const authRouter = express.Router();
@@ -30,14 +31,20 @@ const validateUserCredentials = (credentials) => {
     };
 }
 
-authRouter.post('/login', (req, res) => {
+authRouter.post('/login', async (req, res) => {
     const {
         email,
         username,
         password
     } = req.body; 
 
-    
+    const user = await User.findOne({ email });
+
+    if (user === null){
+        res.send({
+            error: 'No existing user found with that email credential.'
+        });
+    }
 
     res.send('');
 });

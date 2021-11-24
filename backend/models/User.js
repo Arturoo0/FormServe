@@ -21,6 +21,9 @@ const UserSchema = new Schema(
             type: String,
             default: uuidv4
         }
+    },
+    {
+        collection: 'users'
     }
 );
 
