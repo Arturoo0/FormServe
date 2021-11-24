@@ -18,9 +18,21 @@ const userSchema = joi.object({
         .required()
 })
 
+const validateUserCredentials = (credentials) => {
+    const userValidation = userSchema.validate(credentials);
+    const {
+        value: _credentialsObject, 
+        error: _error
+    } = userValidation;
+    return {
+        userCredentials: _credentialsObject,
+        error: _error 
+    };
+}
+
 authRouter.post('/login', (req, res) => {
-    console.log(req.body);
-    res.send();
+    console.log(validateUserCredentials(req.body)); 
+    res.send(validateUserCredentials(req.body));
 });
 
 authRouter.post('/sign-up', (req, res) => {
