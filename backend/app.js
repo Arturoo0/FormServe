@@ -26,8 +26,6 @@ const startApp = async () => {
   const port = 3000;
   const app = express();
 
-  app.use('/auth', authRouter);
-
   app.use(cors({
     credentials: true 
   }));
@@ -36,6 +34,8 @@ const startApp = async () => {
       extended: true
   }));
   app.use(express.json()); 
+
+  app.use('/auth', authRouter);
 
   app.get('/', (req, res) => {
     const status = {
