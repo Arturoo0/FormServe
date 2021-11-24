@@ -31,8 +31,15 @@ const validateUserCredentials = (credentials) => {
 }
 
 authRouter.post('/login', (req, res) => {
-    console.log(validateUserCredentials(req.body)); 
-    res.send(validateUserCredentials(req.body));
+    const {
+        email,
+        username,
+        password
+    } = req.body; 
+
+    
+
+    res.send('');
 });
 
 authRouter.post('/sign-up', (req, res) => {
