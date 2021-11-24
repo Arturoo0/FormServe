@@ -5,6 +5,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 
+const authRouter = require('./routes/auth.js');
+
 const appStartTime = Date.now();
 
 const appCore = async () => {
@@ -23,6 +25,8 @@ const startApp = async () => {
 
   const port = 3000;
   const app = express();
+
+  app.use('/auth', authRouter);
 
   app.use(cors({
     credentials: true 
