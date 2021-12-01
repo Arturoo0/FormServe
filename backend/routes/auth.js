@@ -39,7 +39,6 @@ authRouter.post('/login', async (req, res) => {
     } = req.body; 
 
     const user = await User.findOne({ email });
-
     if (user === null){
         res.send({
             error: 'No existing user found with that email credential.'
@@ -49,8 +48,15 @@ authRouter.post('/login', async (req, res) => {
     res.send('');
 });
 
-authRouter.post('/sign-up', (req, res) => {
-    res.send('');
+authRouter.post('/sign-up', async (req, res) => {
+    const {
+        email,
+        username,
+        password
+    } = req.body; 
+
+    isExistingEmailCredential = await User.exists({ email });
+    
 });
 
 module.exports = authRouter;
