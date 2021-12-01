@@ -3,6 +3,7 @@ const joi = require('joi');
 const bcrypt = require('bcrypt');
 
 const { User } = require('../models/User.js');
+const ERROR_MESSAGES = require('../utils/errorMessages.js');
 const authRouter = express.Router();
 
 const userSchema = joi.object({
@@ -40,12 +41,9 @@ authRouter.post('/login', async (req, res) => {
 
     const user = await User.findOne({ email });
     if (user === null){
-        res.send({
-            error: 'No existing user found with that email credential.'
-        });
+        return res.send(ERROR_MESSAGES.NO_ASSOCIATED_EMAIL);
     }
-
-    res.send('');
+    return res.send({});
 });
 
 authRouter.post('/sign-up', async (req, res) => {
@@ -56,7 +54,10 @@ authRouter.post('/sign-up', async (req, res) => {
     } = req.body; 
 
     isExistingEmailCredential = await User.exists({ email });
-    
+    if (isExistingEmailCredential === false){   
+        return res.send(ERROR_MESSAGES.NO_ASSOCIATED_EMAIL);
+    }
+    return res.send({});
 });
 
 module.exports = authRouter;
