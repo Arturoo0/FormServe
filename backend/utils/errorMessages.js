@@ -1,10 +1,10 @@
 
-class ERROR_MESSAGES {
-    constructor(){
-        this.NO_ASSOCIATED_EMAIL = {
-            error: 'No existing user found with that email credetial.'
+class errorMessages {
+    static noAssociatedEmail(){
+        return {
+            error: 'No existing user found with that email credential'
         }
     }
 }
 
-module.exports = new ERROR_MESSAGES(); 
+module.exports = errorMessages; 
