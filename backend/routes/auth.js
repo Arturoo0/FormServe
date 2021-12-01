@@ -6,6 +6,8 @@ const { User } = require('../models/User.js');
 const errorMessages = require('../utils/errorMessages.js');
 const authRouter = express.Router();
 
+const saltRounds = 10;
+
 const userSchema = joi.object({
     email: joi.string()
         .email()
@@ -63,6 +65,14 @@ authRouter.post('/sign-up', async (req, res) => {
         return res.send(errorMessages.foundAssociatedUserCredential());
     }
 
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const newUser = new User({
+        email, 
+        username,
+        password: hashedPassword
+    });
+
+    await newUser.save();
     return res.send({});
 });
 
