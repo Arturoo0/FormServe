@@ -41,7 +41,7 @@ authRouter.post('/login', async (req, res) => {
 
     const user = await User.findOne({ email });
     if (user === null){
-        return res.send(errorMessages.noAssociatedEmail());
+        return res.send(errorMessages.noAssociatedUserCredential('email'));
     }
     return res.send({});
 });
@@ -54,9 +54,15 @@ authRouter.post('/sign-up', async (req, res) => {
     } = req.body; 
 
     isExistingEmailCredential = await User.exists({ email });
-    if (isExistingEmailCredential === false){   
-        return res.send(errorMessages.noAssociatedEmail());
+    if (isExistingEmailCredential){   
+        return res.send(errorMessages.foundAssociatedUserCredential());
     }
+
+    isExistingUsernameCredential = await User.exists({ username });
+    if (isExistingUsernameCredential){
+        return res.send(errorMessages.foundAssociatedUserCredential());
+    }
+
     return res.send({});
 });
 

@@ -1,8 +1,14 @@
 
 class errorMessages {
-    static noAssociatedEmail(){
+    static noAssociatedUserCredential(credentialType){
         return {
-            error: 'No existing user found with that email credential'
+            error: `No existing user found with that ${credentialType} credential`
+        }
+    }   
+
+    static foundAssociatedUserCredential(){
+        return {
+            error: 'Username or email credential already taken'
         }
     }
 }
