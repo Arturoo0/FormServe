@@ -42,10 +42,19 @@ authRouter.post('/login', async (req, res) => {
     } = req.body; 
 
     const user = await User.findOne({ email });
-    if (user === null){
+    if (!user){
         return res.send(errorMessages.noAssociatedUserCredential('email'));
     }
-    return res.send({});
+
+    const doesUsernameMatch = user.username === username;
+    const doesPasswordMatch = await bcrypt.compare(password, user.password);
+
+    if (!doesUsernameMatch || !doesPasswordMatch){
+        return res.send(errorMessages.credentialMismatchProvided());
+    }
+    return res.send({
+        message: 'Succesfully logged in.'
+    });
 });
 
 authRouter.post('/sign-up', async (req, res) => {
@@ -73,7 +82,9 @@ authRouter.post('/sign-up', async (req, res) => {
     });
 
     await newUser.save();
-    return res.send({});
+    return res.send({
+        message: 'Succesfully created an account.' 
+    });
 });
 
 module.exports = authRouter;

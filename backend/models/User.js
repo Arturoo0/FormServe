@@ -22,9 +22,7 @@ const UserSchema = new Schema(
             default: uuidv4
         }
     },
-    {
-        collection: 'users'
-    }
+    { collection: 'users' }
 );
 
 module.exports = {

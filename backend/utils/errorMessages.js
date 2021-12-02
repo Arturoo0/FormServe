@@ -1,16 +1,24 @@
 
-class errorMessages {
-    static noAssociatedUserCredential(credentialType){
-        return {
-            error: `No existing user found with that ${credentialType} credential`
-        }
-    }   
+const generateErrorMessage = (errorMessage) => {
+    return {
+        error: errorMessage
+    };
+};
 
-    static foundAssociatedUserCredential(){
-        return {
-            error: 'Username or email credential already taken'
-        }
-    }
+const noAssociatedUserCredential = (credentialType) => {
+    return generateErrorMessage(`No existing user found with that ${credentialType} credential`); 
+}   
+
+const foundAssociatedUserCredential = () => {
+    return generateErrorMessage('Username or email credential already taken');
 }
 
-module.exports = errorMessages; 
+const credentialMismatchProvided = () => {
+    return generateErrorMessage('Provided user credentials present a mismatch')
+}
+
+module.exports = {
+    noAssociatedUserCredential,
+    foundAssociatedUserCredential,
+    credentialMismatchProvided 
+};
