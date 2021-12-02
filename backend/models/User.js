@@ -19,13 +19,12 @@ const UserSchema = new Schema(
         }, 
         id: {
             type: String,
-            default: uuidv4
+            default: uuidv4()
         }
     },
     { collection: 'users' }
 );
 
 module.exports = {
-    UserSchema, 
     User: mongoose.model('User', UserSchema)
 };
