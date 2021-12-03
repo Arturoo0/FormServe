@@ -27,6 +27,7 @@ const startApp = async () => {
   const app = express();
 
   app.use(cors({
+    origin: 'http://localhost:8000',
     credentials: true 
   }));
   app.use(cookieParser());
