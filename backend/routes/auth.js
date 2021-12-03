@@ -25,11 +25,11 @@ const userSchema = joi.object({
 const validateUserCredentials = (credentials) => {
     const userValidation = userSchema.validate(credentials);
     const {
-        value: _credentialsObject, 
+        value: credentialsObject, 
         error: _error
     } = userValidation;
     return {
-        userCredentials: _credentialsObject,
+        userCredentials: credentialsObject,
         error: _error 
     };
 }
