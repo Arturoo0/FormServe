@@ -17,13 +17,13 @@ const credentialMismatchProvided = () => {
     return generateErrorMessage('Provided user credentials present a mismatch')
 }
 
-const missingCredentialsProvided = () => {
-    return generateErrorMessage('Missing credentials provided');
+const missingOrIncorrectCredentialsProvided = () => {
+    return generateErrorMessage('Missing or incorrect credentials were provided');
 };
 
 module.exports = {
     noAssociatedUserCredential,
     foundAssociatedUserCredential,
     credentialMismatchProvided,
-    missingCredentialsProvided
+    missingOrIncorrectCredentialsProvided
 };

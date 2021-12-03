@@ -36,7 +36,7 @@ const validateUserCredentials = (credentials) => {
 
 authRouter.post('/login', async (req, res) => {
     if (validateUserCredentials(req.body).error){
-        return res.send(errorMessages.missingCredentialsProvided());
+        return res.send(errorMessages.missingOrIncorrectCredentialsProvided());
     };
     const {
         email,
@@ -62,7 +62,7 @@ authRouter.post('/login', async (req, res) => {
 
 authRouter.post('/sign-up', async (req, res) => {
     if (validateUserCredentials(req.body).error){
-        return res.send(errorMessages.missingCredentialsProvided());
+        return res.send(errorMessages.missingOrIncorrectCredentialsProvided());
     };
     const {
         email,
