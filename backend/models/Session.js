@@ -13,7 +13,7 @@ const SessionSchema = new Schema(
             required: True
         },
         expires: {
-            type: number,
+            type: Number, 
             required: True
         }
     },
