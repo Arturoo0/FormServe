@@ -3,6 +3,7 @@ const joi = require('joi');
 const bcrypt = require('bcrypt');
 
 const { User } = require('../models/User.js');
+const { Session } = require('../models/Session.js');
 const errorMessages = require('../utils/errorMessages.js');
 const authRouter = express.Router();
 
@@ -33,6 +34,10 @@ const validateUserCredentials = (credentials) => {
         error: _error 
     };
 }
+
+// const includeAndSaveSessionCookie = async (res, email) => {
+//     const newSession = new Session();
+// };  
 
 authRouter.post('/login', async (req, res) => {
     if (validateUserCredentials(req.body).error){

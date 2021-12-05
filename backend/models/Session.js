@@ -6,15 +6,15 @@ const SessionSchema = new Schema(
     {
         sessionIdentifier: {
             type: String,
-            required: True
+            required: true
         },
         associatedSessionEmail: {
             type: String,
-            required: True
+            required: true
         },
         expires: {
-            type: Number, 
-            required: True
+            type: Number,
+            required: true
         }
     },
     { collection : 'sessions' }  
