@@ -37,13 +37,13 @@ const validateUserCredentials = (credentials) => {
 }
 
 const includeAndSaveSessionCookie = async (res, email) => {
-    if (Session.exists({ email })) Session.remove({'email' : email});
-    newSessionIdentifier = crypto.randomBytes(16).toString('base64');
+    if (Session.exists({ email })) await Session.remove({'email' : email});
+    newSessionIdentifier = await crypto.randomBytes(16).toString('base64');
     const newSession = new Session({
         sessionToken: newSessionIdentifier, 
         email: associatedSessionEmail
     });
-    newSession.save();
+    await newSession.save();
     res.header('Access-Control-Allow-Credentials', true);
     res.cookie('sessionID', newSessionIdentifier);
 };  
@@ -69,6 +69,7 @@ authRouter.post('/login', async (req, res) => {
     if (!doesUsernameMatch || !doesPasswordMatch){
         return res.send(errorMessages.credentialMismatchProvided());
     }
+    await includeAndSaveSessionCookie();
     return res.send({
         message: 'Succesfully logged in.'
     });
@@ -102,6 +103,7 @@ authRouter.post('/sign-up', async (req, res) => {
     });
 
     await newUser.save();
+    await includeAndSaveSessionCookie(res, email);
     return res.send({
         message: 'Succesfully created an account.' 
     });
