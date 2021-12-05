@@ -1,6 +1,7 @@
 const express = require('express');
 const joi = require('joi');
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 
 const { User } = require('../models/User.js');
 const { Session } = require('../models/Session.js');
@@ -35,9 +36,17 @@ const validateUserCredentials = (credentials) => {
     };
 }
 
-// const includeAndSaveSessionCookie = async (res, email) => {
-//     const newSession = new Session();
-// };  
+const includeAndSaveSessionCookie = async (res, email) => {
+    if (Session.exists({ email })) Session.remove({'email' : email});
+    newSessionIdentifier = crypto.randomBytes(16).toString('base64');
+    const newSession = new Session({
+        sessionToken: newSessionIdentifier, 
+        email: associatedSessionEmail
+    });
+    newSession.save();
+    res.header('Access-Control-Allow-Credentials', true);
+    res.cookie('sessionID', newSessionIdentifier);
+};  
 
 authRouter.post('/login', async (req, res) => {
     if (validateUserCredentials(req.body).error){
