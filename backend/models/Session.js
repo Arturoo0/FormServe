@@ -11,10 +11,6 @@ const SessionSchema = new Schema(
         associatedSessionEmail: {
             type: String,
             required: true
-        },
-        expires: {
-            type: Number,
-            required: true
         }
     },
     { collection : 'sessions' }  

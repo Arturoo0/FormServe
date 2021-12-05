@@ -37,11 +37,11 @@ const validateUserCredentials = (credentials) => {
 }
 
 const includeAndSaveSessionCookie = async (res, email) => {
-    if (Session.exists({ email })) await Session.remove({'email' : email});
+    if (Session.exists({ email })) await Session.deleteOne({'email' : email});
     newSessionIdentifier = await crypto.randomBytes(16).toString('base64');
     const newSession = new Session({
-        sessionToken: newSessionIdentifier, 
-        email: associatedSessionEmail
+        sessionIdentifier: newSessionIdentifier, 
+        associatedSessionEmail: email
     });
     await newSession.save();
     res.header('Access-Control-Allow-Credentials', true);
@@ -65,11 +65,10 @@ authRouter.post('/login', async (req, res) => {
 
     const doesUsernameMatch = user.username === username;
     const doesPasswordMatch = await bcrypt.compare(password, user.password);
-
     if (!doesUsernameMatch || !doesPasswordMatch){
         return res.send(errorMessages.credentialMismatchProvided());
     }
-    await includeAndSaveSessionCookie();
+    await includeAndSaveSessionCookie(res, email);
     return res.send({
         message: 'Succesfully logged in.'
     });
