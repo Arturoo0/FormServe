@@ -16,7 +16,7 @@ const authContainer = {
 
 const Auth = () => {
     const LOGIN = 'login';
-    const SIGNUP = 'signup';
+    const SIGNUP = 'sign-up';
     const [authType, setAuthType] = useState(LOGIN);
     return (
         <div style={authContainer}>

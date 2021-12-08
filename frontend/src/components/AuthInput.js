@@ -9,10 +9,17 @@ const inputContainer = {
     'width': '300px'
 };
 
-const AuthInput = () => {
+const authenticateUser = async (credentials, selectedAuthType) => {
+    const res = await post(`/auth/${selectedAuthType}`, credentials);
+    const { message, error } = res.data;
+    (error) ? alert(error) : alert(message);
+}
+
+const AuthInput = (props) => {
     const [inputEmail, setInputEmail] = useState(null);
     const [inputUsername, setInputUsername] = useState(null);
     const [inputPassword, setInputPassword] = useState(null);
+    const { selectedAuthType } = props;
     return (
         <div style={inputContainer}>
             <Form>
@@ -38,11 +45,12 @@ const AuthInput = () => {
                         placeholder="Enter password" />
                 </Form.Group>
                 <Button variant="primary" type="button" onClick={async () => {
-                    const res = await post('/auth/sign-up', {
+                    const credentials = {
                         email: inputEmail,
                         username: inputUsername,
                         password: inputPassword
-                    })
+                    };
+                    await authenticateUser(credentials, selectedAuthType);
                 }}>
                     Submit
                 </Button>
