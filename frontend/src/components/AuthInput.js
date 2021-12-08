@@ -43,7 +43,6 @@ const AuthInput = () => {
                         username: inputUsername,
                         password: inputPassword
                     })
-                    console.log(res);
                 }}>
                     Submit
                 </Button>
