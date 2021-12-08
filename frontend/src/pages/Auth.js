@@ -20,7 +20,7 @@ const Auth = () => {
     const [authType, setAuthType] = useState(LOGIN);
     return (
         <div style={authContainer}>
-            <ButtonGroup aria-label="Basic example">
+            <ButtonGroup className='mb-3'>
                 <Button variant="secondary" onClick={() => {setAuthType(SIGNUP)}}>Sign-up</Button>
                 <Button variant="secondary" onClick={() => {setAuthType(LOGIN)}}>Login</Button>
             </ButtonGroup>
