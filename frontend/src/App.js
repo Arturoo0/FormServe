@@ -1,10 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { AuthInput } from "./components";
+import Auth from './pages/Auth';
 
 function App() {
   return (
     <div className="App">
-      <AuthInput />
+      <Auth />
     </div>
   );
 }
