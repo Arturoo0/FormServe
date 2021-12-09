@@ -20,6 +20,7 @@ const Auth = () => {
     const SIGNUP = 'sign-up';
     const [authType, setAuthType] = useState(LOGIN);
     const [authAttempted, triggerAuthAttempted] = useState(false);
+    const [isAuthed, setIsAuthed] = useState(false);
 
     const attemptedAuthetication = () => {
         triggerAuthAttempted(!authAttempted);
@@ -29,7 +30,7 @@ const Auth = () => {
         async function checkSession(){
             const res = await get('/auth/is-valid-session');
             const { isValidSession, username } = res.data;
-            console.log(isValidSession, username);
+            setIsAuthed(isValidSession);
         };
         checkSession();
     }, [authAttempted]); 
