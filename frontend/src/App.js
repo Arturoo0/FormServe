@@ -6,6 +6,7 @@ import Auth from './pages/Auth';
 function App() {
   const [authAttempted, triggerAuthAttempted] = useState(false);
   const [isAuthed, setIsAuthed] = useState(false);
+  
   useEffect(() => {
     async function checkSession(){
         const res = await get('/auth/is-valid-session');
