@@ -1,5 +1,6 @@
 import { AuthInput } from '../components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { get } from '../utils/baseRequest.js';
 import { 
     ButtonGroup,
     Button
@@ -18,13 +19,30 @@ const Auth = () => {
     const LOGIN = 'login';
     const SIGNUP = 'sign-up';
     const [authType, setAuthType] = useState(LOGIN);
+    const [authAttempted, triggerAuthAttempted] = useState(false);
+
+    const attemptedAuthetication = () => {
+        triggerAuthAttempted(!authAttempted);
+    };
+
+    useEffect(() => {
+        async function checkSession(){
+            const res = await get('/auth/is-valid-session');
+            console.log(res);
+        };
+        checkSession();
+    }, [authAttempted]); 
+
     return (
         <div style={authContainer}>
             <ButtonGroup className='mb-3'>
                 <Button variant="secondary" onClick={() => {setAuthType(SIGNUP)}}>Sign-up</Button>
                 <Button variant="secondary" onClick={() => {setAuthType(LOGIN)}}>Login</Button>
             </ButtonGroup>
-            <AuthInput selectedAuthType={authType}/>
+            <AuthInput 
+                attemptAuth={attemptedAuthetication} 
+                selectedAuthType={authType}
+            />
         </div>
     );
 }
