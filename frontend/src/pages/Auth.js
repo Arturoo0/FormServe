@@ -15,26 +15,10 @@ const authContainer = {
     'flexDirection' : 'column'
 };
 
-const Auth = () => {
+const Auth = (props) => {
     const LOGIN = 'login';
     const SIGNUP = 'sign-up';
     const [authType, setAuthType] = useState(LOGIN);
-    const [authAttempted, triggerAuthAttempted] = useState(false);
-    const [isAuthed, setIsAuthed] = useState(false);
-
-    const attemptedAuthetication = () => {
-        triggerAuthAttempted(!authAttempted);
-    };
-
-    useEffect(() => {
-        async function checkSession(){
-            const res = await get('/auth/is-valid-session');
-            const { isValidSession, username } = res.data;
-            setIsAuthed(isValidSession);
-        };
-        checkSession();
-    }, [authAttempted]); 
-
     return (
         <div style={authContainer}>
             <ButtonGroup className='mb-3'>
@@ -42,8 +26,8 @@ const Auth = () => {
                 <Button variant="secondary" onClick={() => {setAuthType(LOGIN)}}>Login</Button>
             </ButtonGroup>
             <AuthInput 
-                attemptAuth={attemptedAuthetication} 
                 selectedAuthType={authType}
+                attemptAuth={props.attemptAuth}
             />
         </div>
     );
