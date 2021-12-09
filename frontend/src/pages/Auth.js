@@ -28,6 +28,8 @@ const Auth = () => {
     useEffect(() => {
         async function checkSession(){
             const res = await get('/auth/is-valid-session');
+            const { isValidSession, username } = res.data;
+            console.log(isValidSession, username);
         };
         checkSession();
     }, [authAttempted]); 

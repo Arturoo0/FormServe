@@ -112,9 +112,12 @@ authRouter.get('/is-valid-session', async (req, res) => {
     const currentSession = await Session.findOne({
         sessionIdentifier: req.cookies.sessionID
     });
+    const associatedUsername = await User.findOne({
+        email: currentSession.associatedSessionEmail
+    });
     return res.send({
         isValidSession: currentSession ? true : false,
-        username: currentSession ? currentSession.email : null
+        username: currentSession ? associatedUsername.username : null
     });
 });
 
