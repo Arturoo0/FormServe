@@ -23,9 +23,15 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Auth />} />
-      </Routes>
+      {
+        (isAuthed) ? 
+          <Routes path='/' element={null} /> :
+          <Routes>
+            <Route path='/' element={
+              <Auth attemptAuth={triggerAuthAttempted}/>
+            }/>
+          </Routes>
+      }
     </BrowserRouter>
   );
 }
