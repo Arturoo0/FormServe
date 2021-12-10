@@ -2,6 +2,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import { get } from './utils/baseRequest.js';
 import Auth from './pages/Auth';
+import { 
+  BrowserRouter,
+  Routes,
+  Route
+} from 'react-router-dom';
 
 function App() {
   const [authAttempted, triggerAuthAttempted] = useState(false);
@@ -17,9 +22,9 @@ function App() {
   }, [authAttempted]); 
 
   return (
-    <div className="App">
+    <BrowserRouter>
       <Auth attemptAuth={triggerAuthAttempted}/>
-    </div>
+    </BrowserRouter>
   );
 }
 
