@@ -108,4 +108,21 @@ authRouter.post('/sign-up', async (req, res) => {
     });
 });
 
+authRouter.get('/is-valid-session', async (req, res) => {
+    let associatedUsername;
+    const currentSession = await Session.findOne({
+        sessionIdentifier: req.cookies.sessionID
+    });
+    if (currentSession){
+        associatedUsername = await User.findOne({
+            email: currentSession.associatedSessionEmail
+        });
+    }   
+
+    return res.send({
+        isValidSession: currentSession ? true : false,
+        username: (currentSession && associatedUsername) ? associatedUsername.username : null
+    });
+});
+
 module.exports = authRouter;

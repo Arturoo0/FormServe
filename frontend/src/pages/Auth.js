@@ -1,5 +1,6 @@
 import { AuthInput } from '../components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { get } from '../utils/baseRequest.js';
 import { 
     ButtonGroup,
     Button
@@ -14,7 +15,7 @@ const authContainer = {
     'flexDirection' : 'column'
 };
 
-const Auth = () => {
+const Auth = (props) => {
     const LOGIN = 'login';
     const SIGNUP = 'sign-up';
     const [authType, setAuthType] = useState(LOGIN);
@@ -24,7 +25,10 @@ const Auth = () => {
                 <Button variant="secondary" onClick={() => {setAuthType(SIGNUP)}}>Sign-up</Button>
                 <Button variant="secondary" onClick={() => {setAuthType(LOGIN)}}>Login</Button>
             </ButtonGroup>
-            <AuthInput selectedAuthType={authType}/>
+            <AuthInput 
+                selectedAuthType={authType}
+                attemptAuth={props.attemptAuth}
+            />
         </div>
     );
 }

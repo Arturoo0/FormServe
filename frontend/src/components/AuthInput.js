@@ -19,7 +19,7 @@ const AuthInput = (props) => {
     const [inputEmail, setInputEmail] = useState(null);
     const [inputUsername, setInputUsername] = useState(null);
     const [inputPassword, setInputPassword] = useState(null);
-    const { selectedAuthType } = props;
+    const { selectedAuthType, attemptAuth } = props;
     return (
         <div style={inputContainer}>
             <Form>
@@ -51,6 +51,7 @@ const AuthInput = (props) => {
                         password: inputPassword
                     };
                     await authenticateUser(credentials, selectedAuthType);
+                    attemptAuth();
                 }}>
                     Submit
                 </Button>
