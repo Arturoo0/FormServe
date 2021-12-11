@@ -1,9 +1,9 @@
-import { HomeUserPanel } from "../components";
+import { HomeTopPanel } from "../components";
 
 const Home = () => {
     return (
         <div>
-            <HomeUserPanel />
+            <HomeTopPanel />
         </div> 
     ); 
 }

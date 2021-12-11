@@ -1,7 +1,7 @@
 import AuthInput from "./AuthInput.js";
-import HomeUserPanel from "./HomeUserPanel.js";
+import HomeTopPanel from "./HomeTopPanel.js";
 
 export {
     AuthInput,
-    HomeUserPanel
+    HomeTopPanel
 };
