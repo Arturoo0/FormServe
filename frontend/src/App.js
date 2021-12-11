@@ -22,21 +22,32 @@ function App() {
     checkSession();
   }, [authAttempted]); 
 
+  const isAuthorizedRoutes = () => {
+    return (
+      <Routes>
+        <Route path='/' element={
+          <Home />
+        }/>
+      </Routes>
+    );
+  }
+
+  const isUnathorizedRoutes = () => {
+    return (
+      <Routes>
+        <Route path='/' element={
+          <Auth attemptAuth={triggerAuthAttempted}/>
+        }/>
+      </Routes>
+    );
+  };
+
   return (
     <BrowserRouter>
       {
         (isAuthed) ? 
-          <Routes>
-            <Route path='/' element={
-              <Home />
-            }/>
-          </Routes>
-          :
-          <Routes>
-            <Route path='/' element={
-              <Auth attemptAuth={triggerAuthAttempted}/>
-            }/>
-          </Routes>
+        isAuthorizedRoutes() : 
+        isUnathorizedRoutes()
       }
     </BrowserRouter>
   );
