@@ -1,6 +1,5 @@
 import { AuthInput } from '../components';
-import { useState, useEffect } from 'react';
-import { get } from '../utils/baseRequest.js';
+import { useState } from 'react';
 import { 
     ButtonGroup,
     Button
