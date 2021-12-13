@@ -12,11 +12,13 @@ import {
 function App() {
   const [authAttempted, triggerAuthAttempted] = useState(false);
   const [isAuthed, setIsAuthed] = useState(false);
+  const [username, setUsername] = useState(null);
 
   useEffect(() => {
     async function checkSession(){
         const res = await get('/auth/is-valid-session');
         const { isValidSession, username } = res.data;
+        setUsername(username);
         setIsAuthed(isValidSession);
     };
     checkSession();
