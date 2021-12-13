@@ -16,6 +16,7 @@ const HomeTopPanel = (props) => {
           <Nav className="ms-auto">
             <Nav.Link>Profile</Nav.Link>
             <Nav.Link>Settings</Nav.Link>
+            <Nav.Link></Nav.Link>
             <Navbar.Text>
               <a>{username}</a>
             </Navbar.Text>
