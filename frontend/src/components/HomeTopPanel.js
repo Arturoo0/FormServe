@@ -5,7 +5,8 @@ import {
     NavDropdown
 } from 'react-bootstrap';
 
-const HomeTopPanel = () => {
+const HomeTopPanel = (props) => {
+    const { username } = props;
     return (
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
@@ -16,7 +17,7 @@ const HomeTopPanel = () => {
             <Nav.Link>Profile</Nav.Link>
             <Nav.Link>Settings</Nav.Link>
             <Navbar.Text>
-              <a href="#login">Example user</a>
+              <a>{username}</a>
             </Navbar.Text>
           </Nav>
         </Navbar.Collapse>

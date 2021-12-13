@@ -1,9 +1,10 @@
 import { HomeTopPanel } from "../components";
 
-const Home = () => {
+const Home = (props) => {
+    const { username } = props.userInfo;
     return (
         <div>
-            <HomeTopPanel />
+            <HomeTopPanel username={username}/>
         </div> 
     ); 
 }

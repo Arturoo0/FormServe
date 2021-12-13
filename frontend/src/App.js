@@ -25,10 +25,11 @@ function App() {
   }, [authAttempted]); 
 
   const isAuthorizedRoutes = () => {
+    const userInfo = { username: username };
     return (
       <Routes>
         <Route path='/' element={
-          <Home />
+          <Home userInfo={userInfo}/>
         }/>
       </Routes>
     );
