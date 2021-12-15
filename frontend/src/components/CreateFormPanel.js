@@ -6,11 +6,13 @@ import {
 
 const CreateFormPanel = () => {
     return (    
-        <Container>
-            <Row>
-                <Col></Col>
-            </Row>
-        </Container>
+        <div>
+            <Container>
+                <Row>
+                    <Col>New document</Col>
+                </Row>
+            </Container>
+        </div>
     );      
 };
 
