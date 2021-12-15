@@ -1,7 +1,8 @@
+const express = require('express');
 const formRouter = express.Router();
 
-formRouter = ('/create', async (req, res) => {
-    
+formRouter.post('/create', async (req, res) => {
+
 });
 
 module.exports = formRouter;
