@@ -3,13 +3,24 @@ import {
     Row,
     Col
 } from 'react-bootstrap';
+import { FcDocument } from "react-icons/fc";
+import { BsFillPlusCircleFill } from "react-icons/bs";
+
+const colStack = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+}
 
 const CreateFormPanel = () => {
     return (    
         <div>
             <Container>
                 <Row>
-                    <Col>New document</Col>
+                    <Col style={colStack}>
+                        <FcDocument size={'6em'}/>
+                        <BsFillPlusCircleFill />
+                    </Col>
                 </Row>
             </Container>
         </div>
