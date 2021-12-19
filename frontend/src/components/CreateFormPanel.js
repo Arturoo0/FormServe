@@ -13,14 +13,16 @@ const colStack = {
     alignItems: 'center'
 }
 
-const attemptFormCreation = async () => {};
+const attemptFormCreation = async () => {
+    const req = post('/forms/create');
+};
 
 const CreateFormPanel = () => {
     return (    
         <div>
             <Container>
                 <Row>
-                    <Col style={colStack}>
+                    <Col style={colStack} onClick={() => {attemptFormCreation()}}>
                         <FcDocument size={'6em'}/>
                         <BsFillPlusCircleFill />
                     </Col>
