@@ -1,10 +1,10 @@
 const express = require('express');
+const authenticate = require('../middleware/authenticateSession.js');
 const formRouter = express.Router();
 
-const { Session } = require('../models/Session.js');
+formRouter.use(authenticate());
 
 formRouter.post('/create', async (req, res) => {
-    const { sessionIdentifier }
     return res.send({}) 
 });
 
