@@ -7,6 +7,7 @@ const authenticate = () => {
                 sessionIdentifier: req.cookies.sessionID
             });  
             if (!session) return res.status(404).send({});
+            req.userEmail = session.associatedSessionEmail;
             next();
         } catch (err){
             return res.status(500).send({});
