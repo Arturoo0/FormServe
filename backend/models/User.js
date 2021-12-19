@@ -24,6 +24,10 @@ const UserSchema = new Schema(
         documents: {
             type: Array,
             default: []
+        },
+        maxDocuments: {
+            type: Number,
+            default: 10
         }
     },
     { collection: 'users' }
