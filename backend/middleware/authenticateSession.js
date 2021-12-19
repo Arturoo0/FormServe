@@ -6,10 +6,10 @@ const authenticate = () => {
             const session = await Session.findOne({
                 sessionIdentifier: req.cookies.sessionID
             });  
-            if (!session) return res.status(404).send({})
+            if (!session) return res.status(404).send({});
             next();
         } catch (err){
-            res.status(500).send({})
+            return res.status(500).send({});
         }
     };
 }
