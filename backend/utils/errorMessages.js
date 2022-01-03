@@ -29,5 +29,6 @@ module.exports = {
     noAssociatedUserCredential,
     foundAssociatedUserCredential,
     credentialMismatchProvided,
-    missingOrIncorrectCredentialsProvided
+    missingOrIncorrectCredentialsProvided,
+    maxDocumentLimitExceeded
 };
