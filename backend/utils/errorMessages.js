@@ -21,9 +21,14 @@ const missingOrIncorrectCredentialsProvided = () => {
     return generateErrorMessage('Missing or incorrect credentials were provided');
 };
 
+const maxDocumentLimitExceeded = () => {
+    return generateErrorMessage('Max amount of allowed documents exceeded');
+}
+
 module.exports = {
     noAssociatedUserCredential,
     foundAssociatedUserCredential,
     credentialMismatchProvided,
-    missingOrIncorrectCredentialsProvided
+    missingOrIncorrectCredentialsProvided,
+    maxDocumentLimitExceeded
 };

@@ -20,6 +20,14 @@ const UserSchema = new Schema(
         id: {
             type: String,
             default: uuidv4()
+        },
+        documents: {
+            type: Array,
+            default: []
+        },
+        maxDocuments: {
+            type: Number,
+            default: 10
         }
     },
     { collection: 'users' }

@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 
 const authRouter = require('./routes/auth.js');
+const formRouter = require('./routes/forms.js');
 
 const appStartTime = Date.now();
 
@@ -37,6 +38,7 @@ const startApp = async () => {
   app.use(express.json()); 
 
   app.use('/auth', authRouter);
+  app.use('/forms', formRouter);
 
   app.get('/', (req, res) => {
     const status = {
